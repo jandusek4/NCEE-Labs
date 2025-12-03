@@ -10,6 +10,7 @@ Initial setup:
 - Service Now developer account created at https://developer.servicenow.com/. You need to get get a developer instance pre-populated with sample data by clicking at the "Request instance" button after logging into your account. IMPORTANT - You need to wake up the instance by logging into the Service Now developer account after a period of inactivity when the instance is not used.
 
 Typical setup and demonstration flow:
+- Check out or download repo artifacts from Github
 - Check that the Service Now developer instance is active.
 - Copy file `.env_template` to `.env` and update it according with your Service Now instance setup.
 - Connect ADK to your environment using commands `orchestrate env add` and `orchestrate env activate` described at https://developer.watson-orchestrate.ibm.com/environment/initiate_environment#environment-commands. You will need Orchestrate's URL and API key. Typical commands:
