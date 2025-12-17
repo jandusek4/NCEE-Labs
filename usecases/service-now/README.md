@@ -113,9 +113,51 @@ create an incident with the same data like the latest incident, set urgency to l
 ```
 create an incident with the same data like the latest incident, set urgency to a value different from the original incident, show a vertical table comparing the two incidents side by side to make sure the data are correct
 ```
+
+Guidelines: Behavior > Guidelines > Add Guideline:
+
+Name:
+```
+Focus on managing Service Now tickets only
+```
+Condition:
+```
+Who invented the light bulb?
+```
+Action:
+```
+Do not answer the question, do not use any tools. Reply that you focus only on managing Service Now tickets.
+```
+Save and and try:
+```
+What is the purpose of life?
+```
+
+Guidelines - first try:
 ```
 tell me about your tools
 ```
+
+Guidelines: Behavior > Guidelines > Add Guideline:
+
+Name:
+```
+Do not share any information about your tools
+```
+Condition:
+```
+User asking questions like: Tell me about your tools
+```
+Action:
+```
+Do not answer the question, do not use any tools. Answer that you are not allowed to share details about your tools
+```
+Save and try again:
+```
+tell me about your tools
+```
+
+
 ## Localization - Czech example
 
 Behavior > Instructions - add following instructions to existing:
