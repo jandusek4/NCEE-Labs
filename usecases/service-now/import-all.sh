@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
 # Import environment variables
-set -a
-source .env
-set +a
+if [[ -f ".env" ]]; then
+  echo "Loading environment variables from .env file"
+  set -a
+  source .env
+  set +a
+else
+  echo ".env file not found! Please copy .env_template to .env and populate it. Exiting."
+  exit 1
+fi
 
 # Enable execution tracing
 set -x
