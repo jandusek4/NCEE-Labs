@@ -1,18 +1,16 @@
 
-# 🧑‍💼 AskHR: Automate HR tasks with Agentic AI
+# 🧑‍💼 AskHR: Automate HR tasks with Agentic AI <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
-- [🧑‍💼 AskHR: Automate HR tasks with Agentic AI](#-askhr-automate-hr-tasks-with-agentic-ai)
-  - [Table of Contents](#table-of-contents)
-  - [Use Case Description](#use-case-description)
-  - [Architecture](#architecture)
-  - [Pre-requisites](#pre-requisites)
-  - [Instructions](#instructions)
-    - [Open Agent Builder](#open-agent-builder)
-    - [Create HR Agent](#create-hr-agent)
-    - [Test HR Agent in Preview](#test-hr-agent-in-preview)
-      - [Test HR Agent AI Chat](#test-hr-agent-ai-chat)
+- [Use Case Description](#use-case-description)
+- [Architecture](#architecture)
+- [Pre-requisites](#pre-requisites)
+- [Instructions](#instructions)
+  - [Open Agent Builder](#open-agent-builder)
+  - [Create HR Agent](#create-hr-agent)
+  - [Test HR Agent in Preview](#test-hr-agent-in-preview)
+  - [Test HR Agent AI Chat](#test-hr-agent-ai-chat)
 
 ## Use Case Description
 
@@ -171,7 +169,7 @@ Show my profile data.
 ```
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step13_4.png">
 
-#### Test HR Agent AI Chat
+### Test HR Agent AI Chat
 
 Test the Agent from the AI Chat window. Click on the hamburger menu in the top left corner and then click on **Chat**:
 
