@@ -10,7 +10,7 @@
   - [Open Agent Builder](#open-agent-builder)
   - [Create HR Agent](#create-hr-agent)
   - [Test HR Agent in Preview](#test-hr-agent-in-preview)
-  - [Test HR Agent AI Chat](#test-hr-agent-ai-chat)
+  - [Test HR Agent in AI Chat](#test-hr-agent-in-ai-chat)
 
 ## Use Case Description
 
@@ -169,7 +169,7 @@ Show my profile data.
 ```
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step13_4.png">
 
-### Test HR Agent AI Chat
+### Test HR Agent in AI Chat
 
 Test the Agent from the AI Chat window. Click on the hamburger menu in the top left corner and then click on **Chat**:
 
