@@ -15,6 +15,11 @@ for agent in service_now_agent customer_care_agent; do
   orchestrate agents remove --name ${agent} --kind native
 done
 
+# Flow Tools
+for tool in assisted_incident_creation; do
+  orchestrate tools remove --name "${tool}"
+done
+
 # Service Now Tools
 for tool in create_service_now_incident get_my_service_now_incidents get_service_now_incident_by_number; do
   orchestrate tools remove --name "${tool}"

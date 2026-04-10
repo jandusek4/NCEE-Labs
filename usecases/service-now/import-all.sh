@@ -37,6 +37,11 @@ for python_tool in servicenow/create_service_now_incident.py servicenow/get_my_s
   orchestrate tools import -k python -f "${SCRIPT_DIR}/tools/${python_tool}" -r "${SCRIPT_DIR}/tools/requirements.txt" --app-id "${SNOW_CONNECTION_NAME}"
 done
 
+# Flow Tools
+for flow_tool in flows/assisted_incident_creation.json; do
+  orchestrate tools import -k flow -f "${SCRIPT_DIR}/tools/${flow_tool}" -r "${SCRIPT_DIR}/tools/requirements.txt"
+done
+
 # Knowledge
 orchestrate knowledge-bases import -f ${SCRIPT_DIR}/knowledge_base/service_now_knowledge_base.yaml
 

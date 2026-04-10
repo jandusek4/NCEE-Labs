@@ -1,0 +1,1271 @@
+{
+  "spec": {
+    "kind": "flow",
+    "name": "assisted_incident_creation",
+    "initiators": [],
+    "description": "Enables to create incident in a structured form based way also allowing to enhance the description by GenAI.",
+    "display_name": "Assisted Incident Creation",
+    "input_schema": {},
+    "output_schema": {}
+  },
+  "edges": [
+    {
+      "id": "d18d42a8-98f7-48a8-b2ba-e24c26f0b13c",
+      "end": "UserActivity 1",
+      "start": "__start__"
+    },
+    {
+      "id": "726cc9c5-d592-4b4c-937e-ab94da9bd2ff",
+      "end": "Branch 2",
+      "start": "UserActivity 1"
+    },
+    {
+      "id": "f0d46902-ba73-4a2f-9fd1-796bf733d915",
+      "end": "CodeBlock 1",
+      "start": "Branch 1",
+      "display_name": "No"
+    },
+    {
+      "id": "b41247c8-a1dd-4397-ae34-9f2ff25fcd5c",
+      "end": "UserActivity 4",
+      "start": "Branch 1",
+      "display_name": "Yes"
+    },
+    {
+      "id": "75a8afd8-f6d7-447f-9f8d-0440b90a3e4a",
+      "end": "UserActivity 2",
+      "start": "prompt_74c47854-297b-4a20-8dd6-4cd4883afc6c"
+    },
+    {
+      "id": "baac62bd-6c6c-4640-b5e9-39eaafb19083",
+      "end": "Branch 1",
+      "start": "UserActivity 3"
+    },
+    {
+      "id": "52449d5c-eac1-4a2b-a7f5-ea2746cb9b58",
+      "end": "CodeBlock 1",
+      "start": "UserActivity 2"
+    },
+    {
+      "id": "b6075f4a-19a6-4e2e-9e71-1a1b123e1048",
+      "end": "__end__",
+      "start": "tool_682b0512-185a-4634-8ce7-b75d063f865e"
+    },
+    {
+      "id": "1c4fd62a-5bd8-4bbb-aa87-2508b02ee851",
+      "end": "prompt_74c47854-297b-4a20-8dd6-4cd4883afc6c",
+      "start": "UserActivity 4"
+    },
+    {
+      "id": "f34932bc-0d55-4bfc-8a19-e16d38898a06",
+      "end": "tool_682b0512-185a-4634-8ce7-b75d063f865e",
+      "start": "CodeBlock 1"
+    },
+    {
+      "id": "0c2d7564-1039-4609-b92c-6267b41bb9f1",
+      "end": "UserActivity 5",
+      "start": "tool_682b0512-185a-4634-8ce7-b75d063f865e"
+    },
+    {
+      "id": "9054a95b-8241-4966-ad3d-b3575db3f807",
+      "end": "__end__",
+      "start": "UserActivity 5"
+    },
+    {
+      "id": "dd9faf72-21b9-4208-a5ea-06d7da0150b4",
+      "end": "__end__",
+      "start": "Branch 2",
+      "display_name": "No"
+    },
+    {
+      "id": "b389c484-9ce3-4164-ae65-5dc6bd85969d",
+      "end": "UserActivity 3",
+      "start": "Branch 2",
+      "display_name": "Yes"
+    }
+  ],
+  "nodes": {
+    "__end__": {
+      "spec": {
+        "kind": "end",
+        "name": "__end__",
+        "position": {
+          "x": -247.365009038726,
+          "y": 3062.226547318259
+        }
+      }
+    },
+    "Branch 1": {
+      "spec": {
+        "kind": "branch",
+        "name": "Branch 1",
+        "position": {
+          "x": 18.127123422124612,
+          "y": 840.828739602216
+        },
+        "evaluator": {
+          "conditions": [
+            {
+              "default": false,
+              "edge_id": "f0d46902-ba73-4a2f-9fd1-796bf733d915",
+              "metadata": {
+                "id": "403cdd46-02c9-4145-b373-051530f1e304",
+                "conditions": [
+                  {
+                    "value": "\"No\"",
+                    "isValid": true,
+                    "dataType": "any",
+                    "operator": "==",
+                    "variableName": "flow[\"Ask for AI enhancement\"][\"Do you want to AI enhance your provided long description\"].output.value"
+                  }
+                ]
+              },
+              "expression": "flow[\"Ask for AI enhancement\"][\"Do you want to AI enhance your provided long description\"].output.value == \"No\""
+            },
+            {
+              "default": true,
+              "edge_id": "b41247c8-a1dd-4397-ae34-9f2ff25fcd5c",
+              "metadata": {
+                "id": "b4493cf8-6deb-4876-b24e-5c6d1168b419"
+              }
+            }
+          ]
+        },
+        "display_name": "AI enhance?",
+        "match_policy": "FIRST_MATCH"
+      }
+    },
+    "Branch 2": {
+      "spec": {
+        "kind": "branch",
+        "name": "Branch 2",
+        "position": {
+          "x": -320.94163577581253,
+          "y": 899.4854129814981
+        },
+        "evaluator": {
+          "conditions": [
+            {
+              "default": false,
+              "edge_id": "dd9faf72-21b9-4208-a5ea-06d7da0150b4",
+              "metadata": {
+                "id": "74ae9813-2886-4ae8-84ba-11749b9d2061",
+                "conditions": [
+                  {
+                    "value": "True",
+                    "isValid": true,
+                    "dataType": "boolean",
+                    "operator": "is not",
+                    "variableName": "flow[\"Collect information about incident\"][\"Set submitted\"].output.submitted"
+                  }
+                ]
+              },
+              "expression": "flow[\"Collect information about incident\"][\"Set submitted\"].output.submitted is not True"
+            },
+            {
+              "default": true,
+              "edge_id": "b389c484-9ce3-4164-ae65-5dc6bd85969d",
+              "metadata": {
+                "id": "61dfc636-781d-4f5b-8730-2fa00f3f6304"
+              }
+            }
+          ]
+        },
+        "display_name": "Submitted?",
+        "match_policy": "FIRST_MATCH"
+      }
+    },
+    "__start__": {
+      "spec": {
+        "kind": "start",
+        "name": "__start__",
+        "position": {
+          "x": -270,
+          "y": 196
+        }
+      }
+    },
+    "CodeBlock 1": {
+      "spec": {
+        "fn": "if (flow[\"Ask for AI enhancement\"][\"Do you want to AI enhance your provided long description\"].output.value == 'Yes \ud83d\ude80' and \n    flow[\"Review AI enhancement\"][\"Set acceptance\"].output.aiEnhancedAccepted == True) :\n    self.output.longDescription = flow[\"AI enhancement of long description\"].output.value\nelse:\n  self.output.longDescription = flow[\"Collect information about incident\"][\"Incident details\"].output[\"Long description\"]",
+        "kind": "script",
+        "name": "CodeBlock 1",
+        "position": {
+          "x": 13.779383670284744,
+          "y": 2205.0247450096617
+        },
+        "display_name": "Determine long description",
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "longDescription": {
+              "type": "string",
+              "description": "Chosen long description"
+            }
+          }
+        }
+      }
+    },
+    "UserActivity 1": {
+      "spec": {
+        "kind": "user_flow",
+        "name": "UserActivity 1",
+        "position": {
+          "x": -447.2734459172631,
+          "y": 367.3195079107729
+        },
+        "dimensions": {
+          "width": 488,
+          "height": 474
+        },
+        "initiators": [],
+        "display_name": "Collect information about incident",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "assignees": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "wxo-user"
+              }
+            }
+          }
+        }
+      },
+      "edges": [
+        {
+          "id": "a4db457d-aff0-4a53-9752-78457cda449c",
+          "end": "user_e1403098-2702-4e34-a6b2-ba4d339bf80e",
+          "start": "UserActivity 1__start__"
+        },
+        {
+          "id": "5e3cf687-7998-4def-9436-1a597c8ef3cc",
+          "end": "CodeBlock 3",
+          "start": "user_e1403098-2702-4e34-a6b2-ba4d339bf80e"
+        },
+        {
+          "id": "72f6341d-700c-4c35-a07a-69b8237af1d9",
+          "end": "UserActivity 1__end__",
+          "start": "user_e1403098-2702-4e34-a6b2-ba4d339bf80e"
+        },
+        {
+          "id": "470bf21a-dfb7-42c9-8912-b6618997cfe7",
+          "end": "UserActivity 1__end__",
+          "start": "CodeBlock 3"
+        }
+      ],
+      "nodes": {
+        "CodeBlock 3": {
+          "spec": {
+            "fn": "self.output.submitted = True",
+            "kind": "script",
+            "name": "CodeBlock 3",
+            "position": {
+              "x": 212,
+              "y": 225
+            },
+            "display_name": "Set submitted",
+            "output_schema": {
+              "type": "object",
+              "properties": {
+                "submitted": {
+                  "type": "boolean",
+                  "description": ""
+                }
+              }
+            }
+          }
+        },
+        "UserActivity 1__end__": {
+          "spec": {
+            "kind": "end",
+            "name": "UserActivity 1__end__",
+            "position": {
+              "x": 121,
+              "y": 426
+            }
+          }
+        },
+        "UserActivity 1__start__": {
+          "spec": {
+            "kind": "start",
+            "name": "UserActivity 1__start__",
+            "position": {
+              "x": 121,
+              "y": 0
+            }
+          }
+        },
+        "user_e1403098-2702-4e34-a6b2-ba4d339bf80e": {
+          "spec": {
+            "form": {
+              "name": "form_b619ab63-5963-4929-943f-3a4fe419de8d",
+              "fields": [
+                {
+                  "kind": "text",
+                  "name": "field_1",
+                  "uiSchema": {
+                    "ui:help": "Keep it concise",
+                    "ui:title": "Short description",
+                    "ui:widget": "TextWidget",
+                    "ui:placeholder": "Short description of your incident"
+                  },
+                  "direction": "input",
+                  "input_map": {
+                    "spec": {
+                      "maps": [],
+                      "name": ""
+                    }
+                  },
+                  "display_name": "Short description",
+                  "input_schema": {
+                    "type": "object",
+                    "required": [],
+                    "properties": {},
+                    "additionalProperties": false
+                  },
+                  "output_schema": {
+                    "type": "object",
+                    "required": [
+                      "value"
+                    ],
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "uiSchemaParkingLot": {}
+                },
+                {
+                  "kind": "text",
+                  "name": "field_2",
+                  "uiSchema": {
+                    "ui:help": "Provide all needed details",
+                    "ui:title": "Long description",
+                    "ui:widget": "TextareaWidget",
+                    "ui:placeholder": "Full description of your incident"
+                  },
+                  "direction": "input",
+                  "input_map": {
+                    "spec": {
+                      "maps": [],
+                      "name": ""
+                    }
+                  },
+                  "display_name": "Long description",
+                  "input_schema": {
+                    "type": "object",
+                    "required": [],
+                    "properties": {},
+                    "additionalProperties": false
+                  },
+                  "output_schema": {
+                    "type": "object",
+                    "required": [
+                      "value"
+                    ],
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "uiSchemaParkingLot": {}
+                },
+                {
+                  "kind": "any",
+                  "name": "field_3",
+                  "uiSchema": {
+                    "ui:title": "Urgency",
+                    "ui:widget": "ComboboxWidget",
+                    "ui:placeholder": "Select Urgency, lowest is most urgent"
+                  },
+                  "direction": "input",
+                  "input_map": {
+                    "spec": {
+                      "maps": [
+                        {
+                          "metadata": {
+                            "assignmentType": "pyExpression"
+                          },
+                          "has-no-value": false,
+                          "target_variable": "self.input.choices",
+                          "value_expression": "[\"3\",\"2\",\"1\"]"
+                        },
+                        {
+                          "metadata": {
+                            "assignmentType": "variable"
+                          },
+                          "has-no-value": true,
+                          "target_variable": "self.input.display_text",
+                          "value_expression": ""
+                        },
+                        {
+                          "metadata": {
+                            "assignmentType": "automap"
+                          },
+                          "has-no-value": false,
+                          "target_variable": "self.input.display_items"
+                        },
+                        {
+                          "metadata": {
+                            "assignmentType": "pyExpression"
+                          },
+                          "has-no-value": false,
+                          "target_variable": "self.input.default",
+                          "value_expression": "\"3\""
+                        }
+                      ],
+                      "name": ""
+                    }
+                  },
+                  "display_name": "Urgency",
+                  "input_schema": {
+                    "type": "object",
+                    "required": [
+                      "choices"
+                    ],
+                    "properties": {
+                      "choices": {
+                        "type": "array",
+                        "items": {}
+                      },
+                      "default": {},
+                      "display_text": {
+                        "type": "string"
+                      },
+                      "display_items": {
+                        "type": "array",
+                        "items": {}
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "output_schema": {
+                    "type": "object",
+                    "required": [
+                      "value"
+                    ],
+                    "properties": {
+                      "value": {
+                        "type": "object",
+                        "properties": {}
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "uiSchemaParkingLot": {}
+                }
+              ],
+              "buttons": [
+                {
+                  "kind": "submit",
+                  "name": "submit",
+                  "edge_id": "5e3cf687-7998-4def-9436-1a597c8ef3cc",
+                  "visible": true,
+                  "display_name": "Submit"
+                },
+                {
+                  "kind": "cancel",
+                  "name": "cancel",
+                  "edge_id": "72f6341d-700c-4c35-a07a-69b8237af1d9",
+                  "visible": true,
+                  "display_name": "Cancel"
+                }
+              ],
+              "jsonSchema": {
+                "type": "object",
+                "required": [
+                  "field_2",
+                  "field_1",
+                  "field_3"
+                ],
+                "properties": {
+                  "field_1": {
+                    "type": "string",
+                    "title": "Short description"
+                  },
+                  "field_2": {
+                    "type": "string",
+                    "title": "Long description"
+                  },
+                  "field_3": {
+                    "title": "Urgency (Required)"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "display_name": "Form 1"
+            },
+            "kind": "user",
+            "name": "user_e1403098-2702-4e34-a6b2-ba4d339bf80e",
+            "fields": [],
+            "owners": [],
+            "position": {
+              "x": 75,
+              "y": 87
+            },
+            "display_name": "Incident details"
+          }
+        }
+      },
+      "schemas": {}
+    },
+    "UserActivity 2": {
+      "spec": {
+        "kind": "user_flow",
+        "name": "UserActivity 2",
+        "position": {
+          "x": 202.2491493700527,
+          "y": 1506.865320248541
+        },
+        "dimensions": {
+          "width": 846,
+          "height": 604
+        },
+        "initiators": [],
+        "display_name": "Review AI enhancement",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "assignees": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "wxo-user"
+              }
+            }
+          }
+        }
+      },
+      "edges": [
+        {
+          "id": "757bd4f9-89f1-44db-bc0f-483075987594",
+          "end": "user_1ae99a4c-ce28-42b1-89fc-96dff222f216",
+          "start": "UserActivity 2__start__"
+        },
+        {
+          "id": "2b9e4da6-9824-4a5f-ac4d-8319be3007ca",
+          "end": "CodeBlock 2",
+          "start": "user_1ae99a4c-ce28-42b1-89fc-96dff222f216"
+        },
+        {
+          "id": "a7e2814d-8bd1-453d-85a3-74486ec72524",
+          "end": "UserActivity 2__end__",
+          "start": "user_1ae99a4c-ce28-42b1-89fc-96dff222f216"
+        },
+        {
+          "id": "7bc08100-b6c9-434e-bfb8-d12056688b0c",
+          "end": "UserActivity 2__end__",
+          "start": "CodeBlock 2"
+        }
+      ],
+      "nodes": {
+        "CodeBlock 2": {
+          "spec": {
+            "fn": "self.output.aiEnhancedAccepted = True",
+            "kind": "script",
+            "name": "CodeBlock 2",
+            "position": {
+              "x": 437.6473544720584,
+              "y": 307.29398267247643
+            },
+            "display_name": "Set acceptance",
+            "output_schema": {
+              "type": "object",
+              "properties": {
+                "aiEnhancedAccepted": {
+                  "type": "boolean",
+                  "description": ""
+                }
+              }
+            }
+          }
+        },
+        "UserActivity 2__end__": {
+          "spec": {
+            "kind": "end",
+            "name": "UserActivity 2__end__",
+            "position": {
+              "x": 300,
+              "y": 556
+            }
+          }
+        },
+        "UserActivity 2__start__": {
+          "spec": {
+            "kind": "start",
+            "name": "UserActivity 2__start__",
+            "position": {
+              "x": 300,
+              "y": 0
+            }
+          }
+        },
+        "user_1ae99a4c-ce28-42b1-89fc-96dff222f216": {
+          "spec": {
+            "form": {
+              "name": "form_1ea76fca-c12d-4365-956c-dffb496618e9",
+              "fields": [
+                {
+                  "kind": "field",
+                  "name": "field_1",
+                  "uiSchema": {
+                    "ui:title": "Long description",
+                    "ui:widget": "DataWidget",
+                    "ui:options": {
+                      "label": true
+                    }
+                  },
+                  "direction": "output",
+                  "input_map": {
+                    "spec": {
+                      "maps": [
+                        {
+                          "metadata": {
+                            "assignmentType": "variable"
+                          },
+                          "has-no-value": false,
+                          "target_variable": "self.input.value",
+                          "value_expression": "flow[\"Collect information about incident\"][\"Incident details\"].output[\"Long description\"]"
+                        }
+                      ],
+                      "name": ""
+                    }
+                  },
+                  "display_name": "Long description",
+                  "input_schema": {
+                    "type": "object",
+                    "required": [
+                      "value"
+                    ],
+                    "properties": {
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "boolean"
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "uiSchemaParkingLot": {}
+                },
+                {
+                  "kind": "field",
+                  "name": "field_2",
+                  "uiSchema": {
+                    "ui:title": "AI enhanced long description",
+                    "ui:widget": "DataWidget",
+                    "ui:options": {
+                      "label": true
+                    }
+                  },
+                  "direction": "output",
+                  "input_map": {
+                    "spec": {
+                      "maps": [
+                        {
+                          "metadata": {
+                            "assignmentType": "variable"
+                          },
+                          "has-no-value": false,
+                          "target_variable": "self.input.value",
+                          "value_expression": "flow[\"AI enhancement of long description\"].output.value"
+                        }
+                      ],
+                      "name": ""
+                    }
+                  },
+                  "display_name": "AI enhanced long description",
+                  "input_schema": {
+                    "type": "object",
+                    "required": [
+                      "value"
+                    ],
+                    "properties": {
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "boolean"
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "uiSchemaParkingLot": {}
+                }
+              ],
+              "buttons": [
+                {
+                  "kind": "submit",
+                  "name": "submit",
+                  "edge_id": "2b9e4da6-9824-4a5f-ac4d-8319be3007ca",
+                  "visible": true,
+                  "display_name": "Accept AI enhancement \ud83d\ude80"
+                },
+                {
+                  "kind": "cancel",
+                  "name": "cancel",
+                  "edge_id": "a7e2814d-8bd1-453d-85a3-74486ec72524",
+                  "visible": true,
+                  "display_name": "Keep original"
+                }
+              ],
+              "jsonSchema": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                  "field_1": {
+                    "type": "string",
+                    "title": "Long description"
+                  },
+                  "field_2": {
+                    "type": "string",
+                    "title": "AI enhanced long description"
+                  }
+                },
+                "description": "Review the AI enhanced long description and choose how you would like to proceed",
+                "additionalProperties": false
+              },
+              "display_name": "Form 1"
+            },
+            "kind": "user",
+            "name": "user_1ae99a4c-ce28-42b1-89fc-96dff222f216",
+            "fields": [],
+            "owners": [],
+            "position": {
+              "x": 300,
+              "y": 90
+            },
+            "display_name": "Long description choice"
+          }
+        }
+      },
+      "schemas": {}
+    },
+    "UserActivity 3": {
+      "spec": {
+        "kind": "user_flow",
+        "name": "UserActivity 3",
+        "position": {
+          "x": 188.93213519106976,
+          "y": 506.83483101116286
+        },
+        "dimensions": {
+          "width": 286,
+          "height": 280
+        },
+        "initiators": [],
+        "display_name": "Ask for AI enhancement",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "assignees": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "wxo-user"
+              }
+            }
+          }
+        }
+      },
+      "edges": [
+        {
+          "id": "5fecf299-339b-41ef-8f94-232c00f48e7e",
+          "end": "user_9c9539eb-1b51-47db-9e6c-bd2a55edcae4",
+          "start": "UserActivity 3__start__"
+        },
+        {
+          "id": "54eb32cc-a1af-4920-848e-3adb0bf1dbdb",
+          "end": "UserActivity 3__end__",
+          "start": "user_9c9539eb-1b51-47db-9e6c-bd2a55edcae4"
+        }
+      ],
+      "nodes": {
+        "UserActivity 3__end__": {
+          "spec": {
+            "kind": "end",
+            "name": "UserActivity 3__end__",
+            "position": {
+              "x": 20,
+              "y": 240
+            }
+          }
+        },
+        "UserActivity 3__start__": {
+          "spec": {
+            "kind": "start",
+            "name": "UserActivity 3__start__",
+            "position": {
+              "x": 20,
+              "y": 0
+            }
+          }
+        },
+        "user_9c9539eb-1b51-47db-9e6c-bd2a55edcae4": {
+          "spec": {
+            "kind": "user",
+            "name": "user_9c9539eb-1b51-47db-9e6c-bd2a55edcae4",
+            "fields": [
+              {
+                "kind": "any",
+                "name": "choice_13fe7e03-fe73-4208-b583-3228ef1ff36d",
+                "direction": "input",
+                "input_map": {
+                  "spec": {
+                    "maps": [
+                      {
+                        "metadata": {
+                          "assignmentType": "pyExpression"
+                        },
+                        "has-no-value": false,
+                        "target_variable": "self.input.choices",
+                        "value_expression": "[\"Yes \ud83d\ude80\",\"No\"]"
+                      },
+                      {
+                        "metadata": {
+                          "assignmentType": "variable"
+                        },
+                        "has-no-value": false,
+                        "target_variable": "self.input.display_text",
+                        "value_expression": ""
+                      }
+                    ],
+                    "name": ""
+                  }
+                },
+                "input_schema": {
+                  "type": "object",
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "required": [
+                    "choices"
+                  ],
+                  "properties": {
+                    "choices": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "display_text": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "output_schema": {
+                  "type": "object",
+                  "required": [
+                    "value"
+                  ],
+                  "properties": {
+                    "value": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            ],
+            "owners": [],
+            "position": {
+              "x": 20,
+              "y": 110
+            },
+            "display_name": "Do you want to AI enhance your provided long description"
+          }
+        }
+      },
+      "schemas": {}
+    },
+    "UserActivity 4": {
+      "spec": {
+        "kind": "user_flow",
+        "name": "UserActivity 4",
+        "position": {
+          "x": 200.6194035148905,
+          "y": 986.4049659375382
+        },
+        "dimensions": {
+          "width": 286,
+          "height": 280
+        },
+        "initiators": [],
+        "display_name": "Notify user about AI generation",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "assignees": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "wxo-user"
+              }
+            }
+          }
+        }
+      },
+      "edges": [
+        {
+          "id": "b6c91439-781f-45c8-b624-84ab7e69975f",
+          "end": "user_53a8cdb0-03d5-4f07-9044-1bc0282add91",
+          "start": "UserActivity 4__start__"
+        },
+        {
+          "id": "acfc6ca4-e3d4-4408-810a-275788be10c1",
+          "end": "UserActivity 4__end__",
+          "start": "user_53a8cdb0-03d5-4f07-9044-1bc0282add91"
+        }
+      ],
+      "nodes": {
+        "UserActivity 4__end__": {
+          "spec": {
+            "kind": "end",
+            "name": "UserActivity 4__end__",
+            "position": {
+              "x": 20,
+              "y": 240
+            }
+          }
+        },
+        "UserActivity 4__start__": {
+          "spec": {
+            "kind": "start",
+            "name": "UserActivity 4__start__",
+            "position": {
+              "x": 20,
+              "y": 0
+            }
+          }
+        },
+        "user_53a8cdb0-03d5-4f07-9044-1bc0282add91": {
+          "spec": {
+            "kind": "user",
+            "name": "user_53a8cdb0-03d5-4f07-9044-1bc0282add91",
+            "fields": [
+              {
+                "kind": "text",
+                "name": "text_output_b8395827-1b4d-4aae-b706-cb8b6d5a4de2",
+                "text": "Your long description is now being AI enhanced by GenAI, please wait \u23f1\ufe0f",
+                "direction": "output",
+                "input_schema": {
+                  "type": "object",
+                  "required": [
+                    "value"
+                  ],
+                  "properties": {
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            ],
+            "owners": [],
+            "position": {
+              "x": 20,
+              "y": 110
+            },
+            "display_name": "Notification"
+          }
+        }
+      },
+      "schemas": {}
+    },
+    "UserActivity 5": {
+      "spec": {
+        "kind": "user_flow",
+        "name": "UserActivity 5",
+        "position": {
+          "x": 299.38902685248877,
+          "y": 2465.1444640283753
+        },
+        "dimensions": {
+          "width": 286,
+          "height": 280
+        },
+        "initiators": [],
+        "display_name": "Notify user about creation failure",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "assignees": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "wxo-user"
+              }
+            }
+          }
+        }
+      },
+      "edges": [
+        {
+          "id": "b6ea2fcf-54c5-470a-8200-2204d451f8ba",
+          "end": "user_fadd4d86-80cf-49cb-a4d1-ed5b30a5c772",
+          "start": "UserActivity 5__start__"
+        },
+        {
+          "id": "0ea6429b-9d16-4aac-b20c-d515e0e03a86",
+          "end": "UserActivity 5__end__",
+          "start": "user_fadd4d86-80cf-49cb-a4d1-ed5b30a5c772"
+        }
+      ],
+      "nodes": {
+        "UserActivity 5__end__": {
+          "spec": {
+            "kind": "end",
+            "name": "UserActivity 5__end__",
+            "position": {
+              "x": 20,
+              "y": 234
+            }
+          }
+        },
+        "UserActivity 5__start__": {
+          "spec": {
+            "kind": "start",
+            "name": "UserActivity 5__start__",
+            "position": {
+              "x": 20,
+              "y": 0
+            }
+          }
+        },
+        "user_fadd4d86-80cf-49cb-a4d1-ed5b30a5c772": {
+          "spec": {
+            "kind": "user",
+            "name": "user_fadd4d86-80cf-49cb-a4d1-ed5b30a5c772",
+            "fields": [
+              {
+                "kind": "text",
+                "name": "text_output_69e936ae-d36e-4317-888e-4e5f5b93f0a1",
+                "text": "Creation of incident failed, please try again later",
+                "direction": "output",
+                "input_schema": {
+                  "type": "object",
+                  "required": [
+                    "value"
+                  ],
+                  "properties": {
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            ],
+            "owners": [],
+            "position": {
+              "x": 20,
+              "y": 110
+            },
+            "display_name": "Notification"
+          }
+        }
+      },
+      "schemas": {}
+    },
+    "tool_682b0512-185a-4634-8ce7-b75d063f865e": {
+      "spec": {
+        "kind": "tool",
+        "name": "tool_682b0512-185a-4634-8ce7-b75d063f865e",
+        "tool": "create_service_now_incident:e90f6e8e-7871-48b0-99f8-22e1effebf1d",
+        "position": {
+          "x": 15.036274036008109,
+          "y": 2321.024745009662
+        },
+        "description": "Create a new ServiceNow incident.\n",
+        "display_name": "Create incident",
+        "input_schema": {
+          "type": "object",
+          "required": [
+            "short_description"
+          ],
+          "properties": {
+            "urgency": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Urgency",
+              "default": 3,
+              "description": "Urgency level (1 - High, 2 - Medium, 3 - Low, default is 3)."
+            },
+            "description": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Description",
+              "default": null,
+              "description": "Detailed information about the incident (optional)."
+            },
+            "short_description": {
+              "type": "string",
+              "title": "Short Description",
+              "description": "A brief summary of the incident."
+            }
+          }
+        },
+        "output_schema": {
+          "description": "The created incident details including incident number and system ID."
+        },
+        "error_handler_config": {
+          "on_error": "branch",
+          "max_retries": 1,
+          "error_edge_id": "0c2d7564-1039-4609-b92c-6267b41bb9f1",
+          "error_message": "Something went wrong while running 'Create incident'",
+          "retry_interval": 1000
+        }
+      },
+      "input_map": {
+        "spec": {
+          "maps": [
+            {
+              "metadata": {
+                "assignmentType": "variable"
+              },
+              "has-no-value": false,
+              "target_variable": "self.input.description",
+              "value_expression": "flow[\"Determine long description\"].output.longDescription"
+            },
+            {
+              "metadata": {
+                "assignmentType": "variable"
+              },
+              "has-no-value": false,
+              "target_variable": "self.input.urgency",
+              "value_expression": "flow[\"Collect information about incident\"][\"Incident details\"].output.Urgency"
+            },
+            {
+              "metadata": {
+                "assignmentType": "variable"
+              },
+              "has-no-value": false,
+              "target_variable": "self.input.short_description",
+              "value_expression": "flow[\"Collect information about incident\"][\"Incident details\"].output[\"Short description\"]"
+            }
+          ],
+          "name": "",
+          "fallback_strategy": "ask_the_user"
+        }
+      }
+    },
+    "prompt_74c47854-297b-4a20-8dd6-4cd4883afc6c": {
+      "spec": {
+        "llm": "groq/openai/gpt-oss-120b",
+        "kind": "prompt",
+        "name": "prompt_74c47854-297b-4a20-8dd6-4cd4883afc6c",
+        "metadata": {
+          "creativity_slider_position": "5",
+          "creativity_slider_manual_override": false
+        },
+        "position": {
+          "x": 221.94826984871952,
+          "y": 1327.8361462115372
+        },
+        "test_data": [
+          {
+            "value": "",
+            "source": "flow[\"Collect information about incident\"][\"Incident details\"].output[\"Long description\"]"
+          },
+          {
+            "value": "",
+            "source": "flow[\"Collect information about incident\"][\"Incident details\"].output[\"Short description\"]"
+          }
+        ],
+        "description": "",
+        "user_prompt": "Original long description is: {flow[\"Collect information about incident\"][\"Incident details\"].output[\"Long description\"]}\nFor context the short description is : {flow[\"Collect information about incident\"][\"Incident details\"].output[\"Short description\"]}\nPlease AI enhance it for me.",
+        "display_name": "AI enhancement of long description",
+        "input_schema": {
+          "type": "object",
+          "required": [],
+          "properties": {}
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          }
+        },
+        "system_prompt": "Your task is to analyze the provided long description of the new incident and do AI enhancement on top of it.\nYour ouput will be only the body of the enhanced long description.\nSuch enhancement could be:\n- Removing the tone of the long description to remain descriptive\n- Making paragraphs of text concise in a bulet point list",
+        "llm_parameters": {
+          "top_k": 30,
+          "top_p": 0.7,
+          "temperature": 0.4,
+          "max_new_tokens": 200,
+          "min_new_tokens": 50,
+          "stop_sequences": [
+            "Human",
+            "AI"
+          ]
+        },
+        "prompt_examples": [],
+        "error_handler_config": {
+          "max_retries": 1,
+          "error_message": "Something went wrong while running 'AI enhancement of long description'",
+          "retry_interval": 1000
+        },
+        "include_agent_context": false
+      },
+      "input_map": {
+        "spec": {
+          "maps": [],
+          "name": "",
+          "fallback_strategy": "ask_the_user"
+        }
+      }
+    }
+  },
+  "schemas": {},
+  "metadata": {
+    "llm_model": "groq/openai/gpt-oss-120b",
+    "source_kind": "ui",
+    "is_system_generated_description": false
+  },
+  "output_map": {
+    "spec": {
+      "maps": [],
+      "name": "",
+      "fallback_strategy": "ask_the_user"
+    }
+  }
+}
