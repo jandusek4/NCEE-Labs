@@ -1,7 +1,7 @@
 spec_version: v1
 style: react
 name: service_now_agent
-display_name: ServiceNow Agent
+display_name: ServiceNow agent
 llm: groq/openai/gpt-oss-120b
 description: >
   This agent specializes in ServiceNow Incident Management, helping users create and retrieve IT service incidents stored in ServiceNow.
@@ -41,20 +41,20 @@ knowledge_base:
 chat_with_docs:
   enabled: true
 welcome_content:
-  welcome_message: "Hello, I'm your Service Now agent. Welcome to watsonx Orchestrate!"
+  welcome_message: "Hello, I'm your ServiceNow agent. Welcome to watsonx Orchestrate!"
   description: "How can I help you today?"
 starter_prompts:
     prompts:
         - id: "list_incidents"
-          title: "List my Service Now incidents"
+          title: "List my ServiceNow incidents"
           subtitle: ""
-          prompt: "List my Service Now incidents"
+          prompt: "List my ServiceNow incidents"
         - id: "create_three_incidents"
-          title: "Create three Service Now incidents"
+          title: "Create three ServiceNow incidents"
           subtitle: ""
           prompt: "Create three incidents, generate random data for the incidents, do not ask for any inputs"
         - id: "create_specific_incident"
-          title: "Create a specific Service Now incident"
+          title: "Create a specific ServiceNow incident"
           subtitle: ""
           prompt: "Create an incident with the same data like the latest incident, set urgency to a value different from the original incident, show a vertical table comparing the two incidents side by side to make sure the data are correct"
 collaborators: []
